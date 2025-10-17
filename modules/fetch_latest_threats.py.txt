@@ -1,0 +1,11 @@
+import feedparser
+
+def fetch_latest_threats():
+    rss_url = "https://news.google.com/rss/search?q=india+cyber+attack+OR+espionage+OR+vpn+OR+deepfake+OR+surveillance"
+    feed = feedparser.parse(rss_url)
+    
+    queries = []
+    for entry in feed.entries[:10]:  # Limit to 10 latest
+        queries.append(entry.title + " — " + entry.summary)
+    
+    return queries
